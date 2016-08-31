@@ -159,7 +159,13 @@ class ToolingApi implements TestRule {
         } else {
             connector.useInstallation(dist.gradleHomeDir.absoluteFile)
         }
-        connector.embedded(embedded)
+        /*
+         * TODO Stefan the embedded executor has been broken by some
+         * change after 3.0. It can no longer handle changes to the
+         * serialized form of tooling models. Temporarily deactivating
+         * embedded mode to work around this.
+         */
+        //connector.embedded(embedded)
         connectorConfigurers.each {
             connector.with(it)
         }
